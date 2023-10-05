@@ -1,5 +1,4 @@
 package com.example.controller;
 
-public class HomeController {
-
+public class ProfileController {
 }
