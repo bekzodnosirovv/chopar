@@ -10,4 +10,5 @@ public class ChoparApplication {
 		SpringApplication.run(ChoparApplication.class, args);
 	}
 
+
 }
