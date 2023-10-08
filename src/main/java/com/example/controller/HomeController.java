@@ -11,4 +11,7 @@ public class HomeController {
     public String home(){
         return "index";
     }
+    public String homePost() {
+        return "redirect:/home";
+    }
 }
