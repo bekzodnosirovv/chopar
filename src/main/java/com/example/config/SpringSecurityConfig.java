@@ -61,7 +61,7 @@ public class SpringSecurityConfig {
                         .anyRequest().authenticated()
         ).formLogin(httpSecurityFormLoginConfigurer -> {
             httpSecurityFormLoginConfigurer
-                    .loginPage("/auth/goToLogin")
+                    .loginPage("/auth/login").permitAll()
                     .loginProcessingUrl("/loginProcess")
                     .successForwardUrl("/home")
                     .failureForwardUrl("/auth/goToLogin")

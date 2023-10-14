@@ -33,7 +33,7 @@ public class AuthController {
         return "index";
     }
 
-    @GetMapping("/goToLogin")
+    @GetMapping("/login")
     public String goToLogin(Model model) {
         model.addAttribute("profile", new AuthDTO());
         model.addAttribute("failed", false);

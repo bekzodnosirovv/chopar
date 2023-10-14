@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.ProfileDTO;
 import com.example.entity.ProfileEntity;
+import com.example.enums.ProfileRole;
 import com.example.enums.ProfileStatus;
 import com.example.repository.ProfileRepository;
 import com.example.util.MD5Util;
@@ -28,6 +29,7 @@ public class AuthService {
         entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setCreatedDate(LocalDateTime.now());
         entity.setStatus(ProfileStatus.REGISTRATION);
+        entity.setRole(ProfileRole.ROLE_USER);
         profileRepository.save(entity);
         return "success";
     }

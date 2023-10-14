@@ -12,13 +12,7 @@ public class HomeController {
     public String home() {
         return "index";
     }
-
     @PostMapping("")
-    public String loginSuccess() {
-
-        return "index";
-    }
-
     public String homePost() {
         return "redirect:/home";
     }

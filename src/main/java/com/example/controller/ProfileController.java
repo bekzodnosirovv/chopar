@@ -26,7 +26,7 @@ public class ProfileController {
         return "dashboard";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         profileService.delete(id);
         return "dashboard";
