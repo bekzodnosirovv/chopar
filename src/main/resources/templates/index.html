@@ -3,17 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <title>HomePage</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" th:href="@{/js/main.js}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
-<h1>HomePage</h1>
-<div sec:authorize="isAuthenticated()">
-    This content is only shown to authenticated users.
+<a th:href="@{/auth/goToRegistration}">registration</a>
+<a th:href="@{/auth/goToLogin}">login</a>
+
+
+<div class="wrapper">
+    <header class="header">
+        <div class="header-authorization authorization" id="authorization">
+            <div class="authorization-block" id="authorization-block">
+                <h3 class="authorization-title">Авторизация</h3>
+                <form>
+                    <div class="authorization-box__input">
+                        <label class="authorization-label">Номер телефона</label>
+                        <input
+                                class="authorization-input"
+                                type="tel"
+                                autocomplete="tel"
+                                value="+998"
+                        />
+                    </div>
+                    <p class="authorization-text">
+                        Если сообщение не пришло, позвоните нам по номеру 71 205 11 11
+                    </p>
+                    <div class="authorization-box__code">
+                        <button class="authorization-code">Получить код</button>
+                    </div>
+                </form>
+                <div class="authorization-close__box">
+                    <button class="authorization-close">&times;</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-container">
+                <div class="header-icon">
+                    <a href="index.html">
+                        <img src="./images/chopar.svg" alt="Chopar"/>
+                    </a>
+                </div>
+                <div id="header-block" class="header-block">
+                    <div id="header-block__box" class="header-block__box">
+                        <div class="header-box__telephone">
+                            <div class="telephone-icon">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                        class="w-5 h-5 text-secondary"
+                                >
+                                    <path
+                                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <a href="tel: 712051111" class="header-telephone">
+                                71 205 11 11
+                            </a>
+                        </div>
+                        <div class="authorization-box__btn">
+                            <button
+                                    type="button"
+                                    class="authorization-btn"
+                                    id="authorization-btn"
+                            >
+                                Войти
+                            </button>
+                        </div>
+                        <button class="authorization-close"></button>
+                        <div id="header-box__burger" class="header-box__burger">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                    class="cursor-pointer h-5 text-secondary w-5 mr-[21px] md:mr-0"
+                            >
+                                <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <nav id="header-nav" class="header-nav">
+                        <ul class="header-list">
+                            <li class="header-item">
+                                <a href="#" class="header-link">О нас</a>
+                            </li>
+                            <li class="header-item">
+                                <a href="#" class="header-link">Мену</a>
+                            </li>
+                            <li class="header-item">
+                                <a href="#" class="header-link">Акции</a>
+                            </li>
+                            <li class="header-item">
+                                <a href="#" class="header-link">Филиалы</a>
+                            </li>
+                            <li class="header-item">
+                                <a href="#" class="header-link">Контакты</a>
+                            </li>
+                            <li class="header-item">
+                                <a href="#" class="header-link">
+                                    Присоединяйтесь к нашей команде
+                                </a>
+                            </li>
+                            <li class="header-item popup-close">
+                                <span class="header-span">&times;</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="carousel" class="carousel">
+            <button class="carousel-btn prev">&#8656;</button>
+            <button class="carousel-btn next">&#8658;</button>
+            <div class="container">
+                <div class="carousel-container">
+                    <ul class="carousel-list">
+                        <li class="carousel-item">
+                            <img
+                                    src="./images/homak.webp"
+                                    alt="homak"
+                                    class="carousel-img"
+                            />
+                        </li>
+                        <li class="carousel-item">
+                            <img
+                                    src="./images/pizza2.jpg"
+                                    alt="pizza2"
+                                    class="carousel-img"
+                            />
+                        </li>
+                        <li class="carousel-item">
+                            <img
+                                    src="./images/pizza3.png"
+                                    alt="pizza3"
+                                    class="carousel-img"
+                            />
+                        </li>
+                        <li class="carousel-item">
+                            <img
+                                    src="./images/pizza4.jpg"
+                                    alt="pizza4"
+                                    class="carousel-img"
+                            />
+                        </li>
+                        <li class="carousel-item">
+                            <img
+                                    src="./images/pizza5.jpg"
+                                    alt="pizza5"
+                                    class="carousel-img"
+                            />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="menu">
+            <div class="container">
+                <div class="menu-block">
+                    <ul class="menu-list">
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">СЕТЫ</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">ПИЦЦА</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">ПИДЕ</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">СНЕКИ</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">СОУСЫ</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">СЛАДКАЯ ПИЦЦА</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">САЛАТЫ</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#">
+                                <span class="menu-link">НАПИТКИ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <h1 class="menu-title">Пицца для всей семьи в Ташкенте</h1>
+
+        <div class="menu-block">
+            <div id="sets" class="sets">
+                <div class="container">
+                    <h2 class="sets-title">Сеты</h2>
+                    <div class="sets-container">
+                        <ul class="sets-list">
+                            <li class="sets-item">
+                                <div class="sets-box__img">
+                                    <img src="./images/sets.webp" alt="Sets"/>
+                                </div>
+                                <div class="sets-block">
+                                    <div class="sets-content">
+                                        <h3 class="sets-appellation">СЕТ МАЗЗА</h3>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                    </div>
+                                    <div class="sets-box">
+                                        <button class="sets-btn">В КОРЗИНУ</button>
+                                        <p class="sets-price">177 000 сум</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="sets-item">
+                                <div class="sets-box__img">
+                                    <img src="./images/sets.webp" alt="Sets"/>
+                                </div>
+                                <div class="sets-block">
+                                    <div class="sets-content">
+                                        <h3 class="sets-appellation">СЕТ МАЗЗА</h3>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                    </div>
+                                    <div class="sets-box">
+                                        <button class="sets-btn">В КОРЗИНУ</button>
+                                        <p class="sets-price">177 000 сум</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="sets-item">
+                                <div class="sets-box__img">
+                                    <img src="./images/sets.webp" alt="Sets"/>
+                                </div>
+                                <div class="sets-block">
+                                    <div class="sets-content">
+                                        <h3 class="sets-appellation">СЕТ МАЗЗА</h3>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                    </div>
+                                    <div class="sets-box">
+                                        <button class="sets-btn">В КОРЗИНУ</button>
+                                        <p class="sets-price">177 000 сум</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="sets-item">
+                                <div class="sets-box__img">
+                                    <img src="./images/sets.webp" alt="Sets"/>
+                                </div>
+                                <div class="sets-block">
+                                    <div class="sets-content">
+                                        <h3 class="sets-appellation">СЕТ МАЗЗА</h3>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                    </div>
+                                    <div class="sets-box">
+                                        <button class="sets-btn">В КОРЗИНУ</button>
+                                        <p class="sets-price">177 000 сум</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="sets-item">
+                                <div class="sets-box__img">
+                                    <img src="./images/sets.webp" alt="Sets"/>
+                                </div>
+                                <div class="sets-block">
+                                    <div class="sets-content">
+                                        <h3 class="sets-appellation">СЕТ МАЗЗА</h3>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                        <p class="sets-text">6 вкусов в 3 пиццах</p>
+                                    </div>
+                                    <div class="sets-box">
+                                        <button class="sets-btn">В КОРЗИНУ</button>
+                                        <p class="sets-price">177 000 сум</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="" class=""></div>
+            <div id="pizza" class="pizza"></div>
+            <div id="pide" class="pide"></div>
+            <div id="snacks" class="snacks"></div>
+            <div id="sauces" class="sauces"></div>
+            <div id="sweet-pizza" class="sweet-pizza"></div>
+            <div id="salads" class="salads"></div>
+            <div id="beverages" class="beverages"></div>
+        </div>
+        <div class="basket">
+            <div class="basket-top">
+                <div class="basket-box">
+                    <h3 class="basket-title">Соберите свою пиццу</h3>
+                    <div class="basket-box__img">
+                        <img src="./images/pizza-img.webp" alt="Pizza img"/>
+                    </div>
+                    <div>
+                        <button class="basket-btn">СОБРАТЬ ПИЦЦУ</button>
+                    </div>
+                </div>
+            </div>
+            <div class="basket-bottom">
+                <div class="basket-box">
+                    <div class="basket-content">
+                        <h3 class="basket-bottom__title">Корзина</h3>
+                        <div>
+                            <img src="./images/cart-icon.webp" alt="Cart icon"/>
+                        </div>
+                    </div>
+                    <div class="basket-box__img">
+                        <img src="./images/cart-empty.webp" alt="Cart empty"/>
+                    </div>
+                    <p class="basket-text">Корзина пуста Выберите пиццу</p>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This content is only shown to administrators.
-</div>
-<div sec:authorize="hasRole('ROLE_USER')">
-    This content is only shown to users.
-</div>
+<footer></footer>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.example.config;
 
+import com.example.util.MD5Util;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -8,42 +10,44 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.UUID;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfig {
     public static String[] AUTH_WHITELIST = {
-            "/home/**",
+            "/home**",
             "/image/**",
     };
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         // authentication (login,password)
-        String password = UUID.randomUUID().toString();
-        System.out.println("User Password mazgi: " + password);
-
-        UserDetails customer = User.builder()
-                .username("customer")
-                .password("{noop}" + password)
-                .roles("CUSTOMER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{noop}" + password)
-                .roles("ADMIN")
-                .build();
         final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(new InMemoryUserDetailsManager(customer, admin));
+        authenticationProvider.setUserDetailsService(userDetailsService);
+//        authenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
+    }
+
+    private PasswordEncoder passwordEncoder() {
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return MD5Util.encode(rawPassword.toString()).equals(encodedPassword);
+            }
+        };
     }
 
     @Bean
@@ -51,6 +55,7 @@ public class SpringSecurityConfig {
         // authorization (ROLE)
         http.authorizeHttpRequests((c) ->
                 c.requestMatchers(AUTH_WHITELIST).permitAll()
+                        .requestMatchers("/home").permitAll()
                         .requestMatchers("/dashboard").hasAnyRole("ADMIN")
                         .requestMatchers("/customer").hasAnyRole("CUSTOMER")
                         .anyRequest().authenticated()

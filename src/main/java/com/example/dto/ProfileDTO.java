@@ -36,7 +36,4 @@ public class ProfileDTO {
 //    @NotBlank(message = "Status required")
     private ProfileStatus status;
     private LocalDateTime createdDate;
-
-    //    jwt
-    private String jwt;
 }
