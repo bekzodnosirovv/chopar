@@ -67,3 +67,32 @@
   padding: 8px 24px;
   color: #faaf05;
 }
+.container-menu {
+  display: flex;
+}
+.menu-block {
+  padding: 0 144px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d;
+  border-radius: 10px;
+}
+.menu-list {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-link {
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2c5885;
+  text-decoration: none;
+}
+.menu-title {
+  font-size: 32px;
+  line-height: 36px;
+  text-align: center;
+  padding-bottom: 44px;
+}

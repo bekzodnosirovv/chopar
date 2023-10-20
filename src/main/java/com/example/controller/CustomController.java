@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/user")
 public class CustomController {
     @GetMapping("")
     public String customer(){
-        return "customer";
+        return "user";
     }
 }

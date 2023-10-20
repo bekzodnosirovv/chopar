@@ -18,7 +18,6 @@ public class ProfileDTO {
 //    @NotNull(message = "name is null")
 //    @Size(min = 3, message = "Name should be minimum 3")
     private String name;
-    private String surname;
 
 //    @NotNull(message = "email is null!")
 //    @Email(message = "Email required")
@@ -27,6 +26,7 @@ public class ProfileDTO {
 //    @NotNull(message = "Password is null!")
 //    @Size(min = 8, message = "password should be minimum 8!")
     private String password;
+    private LocalDateTime dateBirth;
 
 //    private AttachDTO photo;
     private String photoUrl;

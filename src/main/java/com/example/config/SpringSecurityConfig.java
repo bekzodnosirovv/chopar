@@ -19,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfig {
     public static String[] AUTH_WHITELIST = {
-            "/home**",
+            "/home/**",
             "/image/**",
     };
 
@@ -55,9 +55,8 @@ public class SpringSecurityConfig {
         // authorization (ROLE)
         http.authorizeHttpRequests((c) ->
                 c.requestMatchers(AUTH_WHITELIST).permitAll()
-                        .requestMatchers("/home").permitAll()
                         .requestMatchers("/dashboard").hasAnyRole("ADMIN")
-                        .requestMatchers("/customer").hasAnyRole("CUSTOMER")
+                        .requestMatchers("/user").hasAnyRole("USER")
                         .anyRequest().authenticated()
         ).formLogin(httpSecurityFormLoginConfigurer -> {
             httpSecurityFormLoginConfigurer

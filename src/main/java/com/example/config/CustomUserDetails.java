@@ -1,7 +1,10 @@
 package com.example.config;
 
+import com.example.dto.ProfileDTO;
 import com.example.entity.ProfileEntity;
 import com.example.enums.ProfileStatus;
+import com.example.repository.ProfileRepository;
+import com.example.service.ProfileService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

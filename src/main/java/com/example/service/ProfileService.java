@@ -36,14 +36,18 @@ public class ProfileService {
         return profileDTO;
     }
 
-    public String update(ProfileDTO dto){
+    public Boolean findProfileByEmail(String email){
+        Optional<ProfileEntity> optional = profileRepository.findByEmail(email);
+        return optional.isPresent();
+    }
+
+    public String update(ProfileDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findById(dto.getId());
-        if (optional.isEmpty()){
+        if (optional.isEmpty()) {
             return "failed";
         }
         ProfileEntity entity = optional.get();
         entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
         entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setEmail(dto.getEmail());
         entity.setCreatedDate(LocalDateTime.now());
@@ -51,11 +55,11 @@ public class ProfileService {
         return "success";
     }
 
-    public ProfileDTO toDto(ProfileEntity profileEntity){
-        ProfileDTO profileDTO=new ProfileDTO();
+
+    public ProfileDTO toDto(ProfileEntity profileEntity) {
+        ProfileDTO profileDTO = new ProfileDTO();
         profileDTO.setId(profileEntity.getId());
         profileDTO.setName(profileEntity.getName());
-        profileDTO.setSurname(profileEntity.getSurname());
         profileDTO.setEmail(profileEntity.getEmail());
         profileDTO.setCreatedDate(profileEntity.getCreatedDate());
         return profileDTO;
