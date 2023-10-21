@@ -7,12 +7,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProfileDTO {
-    private Integer id;
+    private UUID id;
 
 //    @NotBlank(message = "Name required")
 //    @NotNull(message = "name is null")

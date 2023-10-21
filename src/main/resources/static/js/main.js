@@ -23,13 +23,10 @@ popupClose.onclick = function () {
     headerBlockBox.style.display = "flex";
 };
 
-/*authorizationPassword.onclick = function () {
-    authorizationPassword.style.display = "flex";
-}*/
-
 authorizationBtn.addEventListener("click", openModal);
 authorizationClose.addEventListener("click", closeModal);
 window.addEventListener("click", clickOutside);
+authorizationPassword.addEventListener("click", openModal)
 
 function openModal() {
     authorization.style.display = "flex";

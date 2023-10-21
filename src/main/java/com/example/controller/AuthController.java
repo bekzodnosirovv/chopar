@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.dto.AuthDTO;
-import com.example.dto.ProfileDTO;
 import com.example.dto.RegistrationDTO;
 import com.example.service.AuthService;
 import com.example.service.ProfileService;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth")
@@ -22,15 +22,14 @@ public class AuthController {
     public ProfileService profileService;
 
     @PostMapping("/goToLogin")
-    public String goToLogin(Model model, String email){
+    public String goToLogin(Model model, String email, RedirectAttributes redirectAttrs) {
         Boolean isPresent = profileService.findProfileByEmail(email);
-        if (isPresent){
+        if (isPresent) {
             AuthDTO authDTO = new AuthDTO();
             authDTO.setEmail(email);
             authService.login(authDTO);
-            model.addAttribute("profile", authDTO);
-            model.addAttribute("failed", false);
-            model.addAttribute("passwordSend", true);
+            redirectAttrs.addFlashAttribute("auth", authDTO);
+            redirectAttrs.addFlashAttribute("passwordSend", true);
             return "redirect:/home";
         }
         RegistrationDTO registrationDTO = new RegistrationDTO();
@@ -41,7 +40,7 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("profile", new RegistrationDTO());
         model.addAttribute("activeLink", "admins");
         return "login";
@@ -58,7 +57,7 @@ public class AuthController {
     }
 
     @GetMapping("/failed")
-    public String getFailed(Model model){
+    public String getFailed(Model model) {
         model.addAttribute("profile", new AuthDTO());
         model.addAttribute("failed", false);
         return "login";

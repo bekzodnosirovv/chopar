@@ -19,8 +19,20 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfig {
     public static String[] AUTH_WHITELIST = {
+            "",
+            "/",
+            "/home",
             "/home/**",
             "/image/**",
+            "/images/**",
+            "/css/**",
+            "/js/**",
+            "/JS/**",
+            "/CSS/**",
+            "/fonts/**",
+            "/static/**",
+            "/auth/**",
+            "/errorPage"
     };
 
     @Autowired
@@ -60,10 +72,10 @@ public class SpringSecurityConfig {
                         .anyRequest().authenticated()
         ).formLogin(httpSecurityFormLoginConfigurer -> {
             httpSecurityFormLoginConfigurer
-                    .loginPage("/auth/login").permitAll()
+                    .loginPage("/home").permitAll()
                     .loginProcessingUrl("/loginProcess")
                     .successForwardUrl("/home")
-                    .failureForwardUrl("/auth/goToLogin")
+                    .failureForwardUrl("/errorPage")
                     .permitAll();
         }).logout(LogoutConfigurer::permitAll);
 

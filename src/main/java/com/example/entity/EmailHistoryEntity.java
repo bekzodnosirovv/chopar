@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "email_history")
@@ -12,11 +13,11 @@ import java.time.LocalDateTime;
 @Setter
 public class EmailHistoryEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @Column(name = "to_email")
-    private String toEmail;
+    @Column(name = "mail")
+    private String email;
 
     @Column(name = "title")
     private String title;

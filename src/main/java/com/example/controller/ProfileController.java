@@ -42,10 +42,10 @@ public class ProfileController {
         return "profileUpdate";
     }
 
-    @PostMapping("/edit")
+    /*@PostMapping("/edit")
     public String update(@ModelAttribute("journal") ProfileDTO dto) {
         dto.setId(updateId);
         profileService.update(dto);
         return "redirect:/profile";
-    }
+    }*/
 }

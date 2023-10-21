@@ -19,44 +19,45 @@ import jakarta.mail.internet.MimeMessage;
 public class EmailSenderService {
     @Autowired
     private EmailHistoryRepository emailHistoryRepository;
+    @Autowired
+    private EmailHistoryService emailHistoryService;
+    @Autowired
+    private JavaMailSender javaMailSender;
     @Value("${server.url}")
     private String serverUrl;
     @Value("${spring.mail.username}")
     private String fromEmail;
-    @Autowired
-    private JavaMailSender javaMailSender;
 
-    void sendMimeEmail(String toAccount, String subject, String text) {
-        try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
-            msg.setFrom(fromEmail);
-            helper.setTo(toAccount);
-            helper.setSubject(subject);
-            helper.setText(text, true);
-            javaMailSender.send(msg);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+    public void sendMimeEmail(String toAccount, String text) {
+        ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
+        emailExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    MimeMessage msg=javaMailSender.createMimeMessage();
+                    MimeMessageHelper helper=new MimeMessageHelper(msg,true);
+                    helper.setTo(toAccount);
+                    helper.setSubject("chopar");
+                    helper.setText("Xush kelibsiz",text);
+                    javaMailSender.send(msg);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        emailExecutor.shutdown();
     }
 
-    public ApiResponse sendEmailVerification(String toAccount) {
+    public void sendEmailVerification(String toAccount, Integer code) {
+        EmailHistoryEntity emailHistoryEntity = new EmailHistoryEntity();
+        emailHistoryEntity.setEmail(toAccount);
+        emailHistoryService.create(emailHistoryEntity);
+        String builder = "<h1 style=\"text-align: center\">Hello %s</h1>" +
+                "<p>" +
+                " Bu chopar saytiga kirish uchun kod" +
+                "</p>" +
+                String.format("<h1 style=\"text-align: center\">%s</h1>", code);
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-
-        String jwt = JWTUtil.encode(toAccount);
-//        serverUrl = "http://localhost:8082"; // for email port
-        String url = serverUrl + "/auth/verification/email/" + jwt;
-
-        executor.submit(() -> {
-            sendMimeEmail(toAccount, "YOUTUBE VERIFICATION", HTMLUtil.getRegistrationButton(url));
-
-            EmailHistoryEntity entity = new EmailHistoryEntity();
-            entity.setToEmail(toAccount);
-            entity.setMessage(url);
-            emailHistoryRepository.save(entity);
-            executor.shutdown();
-        });
-        return new ApiResponse(true, "SUCCESS SEND VERIFICATION PAGE!");
+        sendMimeEmail(toAccount, builder);
     }
 }

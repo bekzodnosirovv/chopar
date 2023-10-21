@@ -23,39 +23,37 @@
                                 th:field="${auth.email}"
                                 autocomplete="email"
                                 value=""
+                                required
                         />
                     </div>
                     <p class="authorization-text">
                         Если сообщение не пришло, позвоните нам по номеру 71 205 11 11
                     </p>
                     <div class="authorization-box__code">
-                        <button class="authorization-code">Получить код</button>
+                        <button class="authorization-code" id="authorization-password">Получить код</button>
                     </div>
                 </form>
                 <div class="authorization-close__box">
                     <button class="authorization-close">&times;</button>
                 </div>
             </div>
-            <div th:if="${passwordSend}" class="authorization" id="authorization-password">
+            <div th:if="${passwordSend}" class="authorization-block">
                 <h3 class="authorization-title">Авторизация</h3>
                 <form th:action="@{/loginProcess}" method="post" th:object="${auth}">
                     <div class="authorization-box__input">
+                        <label for="username"><b></b></label>
+                        <input type="text" placeholder="Enter Username" id="username" name="username"
+                               value="aminovnurbek007@gmail.com" hidden="hidden">
+
                         <label class="authorization-label">парол</label>
-                        <input
-                                class="authorization-input"
-                                type="password"
-                                id="password"
-                                name="password"
-                                th:field="${auth.password}"
-                                autocomplete="password"
-                                placeholder="password..."
-                        />
+                        <input class="authorization-input" type="password" id="password" name="password"
+                               autocomplete="password" placeholder="password..."/>
                     </div>
                     <p class="authorization-text">
                         Если сообщение не пришло, позвоните нам по номеру 71 205 11 11
                     </p>
                     <div class="authorization-box__code">
-                        <button class="authorization-code">Получить код</button>
+                        <button class="authorization-code">логин</button>
                     </div>
                 </form>
                 <div class="authorization-close__box">
@@ -92,10 +90,12 @@
                         </div>
                         <div class="authorization-box__btn">
                             <button
+
                                     type="button"
                                     class="authorization-btn"
                                     id="authorization-btn"
                             >
+<!--                                th:text="${profile.name}"-->
                                 Войти
                             </button>
                         </div>

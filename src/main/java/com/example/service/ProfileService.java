@@ -41,7 +41,7 @@ public class ProfileService {
         return optional.isPresent();
     }
 
-    public String update(ProfileDTO dto) {
+    /*public String update(ProfileDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findById(dto.getId());
         if (optional.isEmpty()) {
             return "failed";
@@ -53,7 +53,7 @@ public class ProfileService {
         entity.setCreatedDate(LocalDateTime.now());
         profileRepository.save(entity);
         return "success";
-    }
+    }*/
 
 
     public ProfileDTO toDto(ProfileEntity profileEntity) {

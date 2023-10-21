@@ -7,11 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface EmailHistoryRepository extends JpaRepository<EmailHistoryEntity, Integer> {
-//    findAllByPriceOrderByCreatedDate/**/
-    Page<EmailHistoryEntity> findAllByToEmailOrderByCreatedDate(String price, Pageable pageable);
+    List<EmailHistoryEntity> findByEmail(String email);
 
-    Long countAllByToEmailAndCreatedDateAfter(String email, LocalDateTime localDateTime);
+    List<EmailHistoryEntity> findByCreatedDateBetween(LocalDateTime from, LocalDateTime to);
+
+    Page<EmailHistoryEntity> findAllBy(Pageable pageable);
 }
