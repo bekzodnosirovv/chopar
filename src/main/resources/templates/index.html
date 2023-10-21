@@ -43,7 +43,8 @@
                     <div class="authorization-box__input">
                         <label for="username"><b></b></label>
                         <input type="text" placeholder="Enter Username" id="username" name="username"
-                               value="aminovnurbek007@gmail.com" hidden="hidden">
+                               th:text="${auth.email}"
+                               th:value="${auth.email}" hidden="hidden"/>
 
                         <label class="authorization-label">парол</label>
                         <input class="authorization-input" type="password" id="password" name="password"
@@ -90,13 +91,16 @@
                         </div>
                         <div class="authorization-box__btn">
                             <button
-
                                     type="button"
                                     class="authorization-btn"
                                     id="authorization-btn"
                             >
-<!--                                th:text="${profile.name}"-->
-                                Войти
+                                <input type="text" name="name"
+                                       th:if="${name}"
+                                       th:text="${profile.name}" hidden="hidden"/>
+                                <input type="text" name="name"
+                                       th:if="${!name}"
+                                       th:text="${'Войти'}" hidden="hidden"/>
                             </button>
                         </div>
                         <button class="authorization-close"></button>

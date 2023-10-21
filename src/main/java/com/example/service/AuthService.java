@@ -31,7 +31,6 @@ public class AuthService {
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setEmail(dto.getEmail());
-        entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setCreatedDate(LocalDateTime.now());
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setRole(ProfileRole.ROLE_USER);

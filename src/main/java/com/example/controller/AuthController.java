@@ -53,7 +53,7 @@ public class AuthController {
         if (!result.equals("success")) {
             return "failed";
         }
-        return "index";
+        return "redirect:/home";
     }
 
     @GetMapping("/failed")

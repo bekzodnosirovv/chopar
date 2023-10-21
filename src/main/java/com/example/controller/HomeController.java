@@ -22,21 +22,22 @@ public class HomeController {
     public String home(Model model) {
         if (!model.containsAttribute("auth")) {
             model.addAttribute("passwordSend", false);
-            model.addAttribute("name", false);
             model.addAttribute("auth", new AuthDTO());
         }
-        if (model.containsAttribute("enter")){
-            CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
-            ProfileDTO profileDTO = new ProfileDTO();
-            profileDTO = profileService.toDto(customUserDetails.getProfile());
-            model.addAttribute("profile", profileDTO);
+        if (!model.containsAttribute("enter")){
+            model.addAttribute("name", false);
         }
         return "index";
     }
 
     @PostMapping("/home")
-    public String homePost(Model model){
-        model.addAttribute("enter", true);
+    public String homePost(Model model, RedirectAttributes redirectAttrs){
+        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO = profileService.toDto(customUserDetails.getProfile());
+        redirectAttrs.addFlashAttribute("profile", profileDTO);
+        redirectAttrs.addFlashAttribute("enter", true);
+        redirectAttrs.addFlashAttribute("name", true);
         return "redirect:/home";
     }
 
