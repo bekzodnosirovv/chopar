@@ -28,9 +28,14 @@ public class AuthService {
         if (optional.isPresent()) {
             return "failed";
         }
+        Optional<ProfileEntity> optional2 = profileRepository.findByPhone(dto.getPhone());
+        if (optional2.isPresent()) {
+            return "failed";
+        }
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
         entity.setCreatedDate(LocalDateTime.now());
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setRole(ProfileRole.ROLE_USER);

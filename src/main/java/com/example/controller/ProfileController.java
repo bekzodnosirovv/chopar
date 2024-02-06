@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.config.CustomUserDetails;
 import com.example.dto.ProfileDTO;
 import com.example.service.ProfileService;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,10 +44,22 @@ public class ProfileController {
         return "profileUpdate";
     }
 
-    /*@PostMapping("/edit")
-    public String update(@ModelAttribute("journal") ProfileDTO dto) {
-        dto.setId(updateId);
+    @GetMapping("/account")
+    public String account(Model model) {
+        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO = profileService.toDto(customUserDetails.getProfile());
+        model.addAttribute("profile", profileDTO);
+        model.addAttribute("active", true);
+        return "account";
+    }
+
+    @PostMapping("/edit")
+    public String update(@ModelAttribute ProfileDTO dto, Model model) {
         profileService.update(dto);
-        return "redirect:/profile";
-    }*/
+        model.addAttribute("profile", dto);
+        model.addAttribute("active", true);
+        return "account";
+    }
+
 }

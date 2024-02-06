@@ -30,6 +30,9 @@ public class ProfileEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "phone", unique = true)
+    private String phone;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private ProfileStatus status;

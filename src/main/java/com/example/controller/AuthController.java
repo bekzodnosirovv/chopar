@@ -35,8 +35,7 @@ public class AuthController {
         RegistrationDTO registrationDTO = new RegistrationDTO();
         registrationDTO.setEmail(email);
         model.addAttribute("profile", registrationDTO);
-        model.addAttribute("activeLink", "admins");
-        return "registration";
+        return "account";
     }
 
     @GetMapping("/login")
@@ -47,12 +46,16 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute RegistrationDTO dto, Model model) {
+    public String registration(@ModelAttribute RegistrationDTO dto, RedirectAttributes redirectAttrs) {
         String result = authService.registration(dto);
-        model.addAttribute("activeLink", "admins");
         if (!result.equals("success")) {
-            return "failed";
+            return "errorPage";
         }
+        AuthDTO authDTO = new AuthDTO();
+        authDTO.setEmail(dto.getEmail());
+        authService.login(authDTO);
+        redirectAttrs.addFlashAttribute("auth", authDTO);
+        redirectAttrs.addFlashAttribute("passwordSend", true);
         return "redirect:/home";
     }
 

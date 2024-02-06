@@ -31,8 +31,10 @@ public class SpringSecurityConfig {
             "/CSS/**",
             "/fonts/**",
             "/static/**",
+            "/profile/**",
             "/auth/**",
-            "/errorPage"
+            "/errorPage",
+            "/account"
     };
 
     @Autowired

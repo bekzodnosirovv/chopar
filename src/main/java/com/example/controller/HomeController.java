@@ -25,19 +25,19 @@ public class HomeController {
             model.addAttribute("auth", new AuthDTO());
         }
         if (!model.containsAttribute("enter")){
-            model.addAttribute("name", false);
+            model.addAttribute("active", false);
         }
         return "index";
     }
 
     @PostMapping("/home")
-    public String homePost(Model model, RedirectAttributes redirectAttrs){
+    public String homePost(RedirectAttributes redirectAttrs){
         CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
         ProfileDTO profileDTO = new ProfileDTO();
         profileDTO = profileService.toDto(customUserDetails.getProfile());
         redirectAttrs.addFlashAttribute("profile", profileDTO);
         redirectAttrs.addFlashAttribute("enter", true);
-        redirectAttrs.addFlashAttribute("name", true);
+        redirectAttrs.addFlashAttribute("active", true);
         return "redirect:/home";
     }
 

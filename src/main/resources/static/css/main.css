@@ -181,6 +181,18 @@ button {
 .header-telephone {
     color: #2f5e8e;
 }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    text-align: center;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 .text-secondary {
     color: #2f5e8e;
@@ -523,4 +535,163 @@ button {
     padding-bottom: 44px;
 }
 
+.main-head {
+    max-width: 1192px;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: rgba(156,163,175);
+}
+
+.text-3x1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.text-xs {
+    font-size: .75rem;
+    line-height: 1rem;
+    width: 20rem;
+    --tw-text-opacity: 1;
+    color: rgba(156,163,175,var(--tw-text-opacity));
+}
+
+.items-end {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+}
+
+.items-4 {
+    display: flex;
+    align-items: center;
+    margin-left: 2.5rem;
+}
+
+.img-size {
+    width: 18px;
+    height: 18px;
+}
+
+.display {
+    display: block;
+}
+
+.icon-text {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    margin-left: 0.25rem;
+    color: rgba(250,175,4,var(--tw-text-opacity));
+    text-decoration: inherit;
+}
+
+.edit-account {
+    max-width: 1192px;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    padding: 170px;
+
+}
+
+.title-edit-account {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.mt-10 {
+    margin-top: 2.5rem;
+}
+
+.text-sm {
+    color: rgba(156,163,175);
+    font-size: .875rem;
+    line-height: 1.25rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.relative {
+    position: relative;
+}
+
+.edit-button {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --tw-text-opacity: 1;
+    color: rgba(156,163,175,var(--tw-text-opacity));
+    right: 1rem;
+    padding: 0;
+    line-height: inherit;
+    cursor: pointer;
+}
+
+.svg-class {
+    --tw-text-opacity: 1;
+    color: rgba(156,163,175,var(--tw-text-opacity));
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+    vertical-align: middle;
+}
+
+.birthday-class {
+    justify-content: space-between;
+    display: flex;
+
+}
+
+.birthday-class-2 {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    --tw-bg-opacity: 1;
+    color: rgba(156,163,175,var(--tw-text-opacity));
+    border-radius: 9999px;
+    width: 6rem;
+}
+
+.button-save {
+    --tw-text-opacity: 1;
+    color: rgba(255,255,255,var(--tw-text-opacity));
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    --tw-bg-opacity: 1;
+    background-color: rgba(250,175,4,var(--tw-bg-opacity));
+    border-radius: 9999px;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0;
+    cursor: pointer;
+    background-image: none;
+    -webkit-appearance: button;
+    text-transform: none;
+    font-family: inherit;
+    margin: 0;
+}
 /*# sourceMappingURL=main.css.map */

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="./CSS/main.css"/>
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/main.css"/>
+    <title>Chopar</title>
 </head>
 <body>
 <div class="wrapper">
@@ -89,21 +89,22 @@
                                 71 205 11 11
                             </a>
                         </div>
-                        <div class="authorization-box__btn">
-                            <button
-                                    type="button"
-                                    class="authorization-btn"
-                                    id="authorization-btn"
-                            >
-                                <input type="text" name="name"
+                        <div th:if="${!active}" class="authorization-box__btn">
+                            <button type="button" class="authorization-btn" id="authorization-btn">
+                                <!--<input type="text" name="name"
                                        th:if="${name}"
-                                       th:text="${profile.name}" hidden="hidden"/>
+                                       th:text="${profile.name}" hidden="hidden"/>-->
                                 <input type="text" name="name"
-                                       th:if="${!name}"
                                        th:text="${'Войти'}" hidden="hidden"/>
                             </button>
                         </div>
                         <button class="authorization-close"></button>
+                        <div class="topContent dropdown">
+                            <button th:if="${active}" type="button" th:text="${profile.name}" class="authorization-btn"><i class="fa fa-globe mr-1"></i></button>
+                            <div class="dropdown-content">
+                                <a th:href="@{profile/account}">Личные данные</a>
+                            </div>
+                        </div>
                         <div id="header-box__burger" class="header-box__burger">
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"

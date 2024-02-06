@@ -26,6 +26,7 @@ public class ProfileDTO {
 //    @NotBlank(message = "Password required")
 //    @NotNull(message = "Password is null!")
 //    @Size(min = 8, message = "password should be minimum 8!")
+    private String phone;
     private String password;
     private LocalDateTime dateBirth;
 
