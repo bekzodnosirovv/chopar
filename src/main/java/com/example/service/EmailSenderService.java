@@ -1,20 +1,17 @@
 package com.example.service;
 
-import com.example.dto.ApiResponse;
 import com.example.entity.EmailHistoryEntity;
 import com.example.repository.EmailHistoryRepository;
-import com.example.util.HTMLUtil;
-import com.example.util.JWTUtil;
 import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import java.nio.charset.StandardCharsets;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import jakarta.mail.internet.MimeMessage;
 @Service
 public class EmailSenderService {
     @Autowired

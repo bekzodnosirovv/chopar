@@ -46,9 +46,9 @@ public class AuthService {
     public Integer login(AuthDTO dto) {
         Integer currentCode = random.nextInt(1000, 10000);
         Optional<ProfileEntity> optional = profileRepository.findByEmail(dto.getEmail());
+
         if (optional.isEmpty()) {
             ProfileEntity entity = new ProfileEntity();
-            entity.setId(UUID.randomUUID());
             entity.setEmail(dto.getEmail());
             entity.setStatus(ProfileStatus.ACTIVE);
             entity.setRole(ProfileRole.ROLE_USER);

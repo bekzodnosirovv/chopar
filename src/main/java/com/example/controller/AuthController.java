@@ -35,6 +35,7 @@ public class AuthController {
         RegistrationDTO registrationDTO = new RegistrationDTO();
         registrationDTO.setEmail(email);
         model.addAttribute("profile", registrationDTO);
+        model.addAttribute("active", false);
         return "account";
     }
 

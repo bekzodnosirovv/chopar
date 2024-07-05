@@ -34,7 +34,8 @@ public class SpringSecurityConfig {
             "/profile/**",
             "/auth/**",
             "/errorPage",
-            "/account"
+            "/account",
+            "/orders"
     };
 
     @Autowired

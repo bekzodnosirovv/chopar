@@ -1,14 +1,17 @@
 package com.example.service;
 
+import com.example.dto.OrdersDTO;
 import com.example.dto.ProfileDTO;
+import com.example.entity.OrdersEntity;
 import com.example.entity.ProfileEntity;
+import com.example.repository.OrderRepository;
 import com.example.repository.ProfileRepository;
-import com.example.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +19,9 @@ import java.util.Optional;
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     public List<ProfileDTO> findAll() {
         List<ProfileEntity> all = profileRepository.findAll();
@@ -55,6 +61,29 @@ public class ProfileService {
         return "success";
     }
 
+    public List<OrdersDTO> orders(Integer profileId) {
+        List<OrdersEntity> list = orderRepository.getOrderList(profileId);
+        List<OrdersDTO> dtoList = new LinkedList<>();
+
+        if (list.isEmpty()){
+            return null;
+        }
+
+        list.forEach(mapper -> {
+            OrdersDTO dto = new OrdersDTO();
+            dto.setId(mapper.getId());
+            dto.setAddress(mapper.getAddress());
+            dto.setNumberOfProducts(mapper.getNumberOfProducts());
+            dto.setPrice(mapper.getPrice());
+            dto.setStatus(mapper.getStatus());
+            dto.setCreatedDate(mapper.getCreatedDate());
+
+            dtoList.add(dto);
+                });
+
+        return dtoList;
+    }
+
 
     public ProfileDTO toDto(ProfileEntity profileEntity) {
         ProfileDTO profileDTO = new ProfileDTO();
@@ -65,5 +94,4 @@ public class ProfileService {
         profileDTO.setCreatedDate(profileEntity.getCreatedDate());
         return profileDTO;
     }
-
 }

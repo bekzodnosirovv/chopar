@@ -12,7 +12,7 @@
         <div class="container">
             <div class="header-container">
                 <div class="header-icon">
-                    <a th:href="@{/home}">
+                    <a href="index.html">
                         <img th:src="@{/images/chopar.svg}" alt="Chopar"/>
                     </a>
                 </div>
@@ -41,7 +41,7 @@
                                 <button type="button" th:text="${profile.name}" class="authorization-btn"><i
                                         class="fa fa-globe mr-1"></i></button>
                                 <div class="dropdown-content">
-                                    <a th:href="@{profile/account}">Личные данные</a>
+                                    <a href="account.html"><i class="fa fa-globe mr-1"></i>Личные данные</a>
                                 </div>
                             </div>
                             <div th:if="${!active}">
@@ -118,7 +118,7 @@
         <div class="items-end">
             <div class="items-4">
                 <img class="img-size" th:src="@{/images/bag.png}"/>
-                <a class="icon-text" th:href="@{/profile/orders}">Мои заказы</a>
+                <a class="icon-text" style="--tw-text-opacity: 1;" th:href="@{/profile/orders}">Мои заказы</a>
             </div>
             <div class="items-4">
                 <img class="img-size" th:src="@{/images/location-pin.png}"/>
@@ -126,7 +126,7 @@
             </div>
             <div class="items-4">
                 <img class="img-size" th:src="@{/images/write.png}"/>
-                <a class="icon-text" style="--tw-text-opacity: 1;" th:href="@{/profile/account}">Личные данные</a>
+                <a class="icon-text" th:href="@{/profile/account}">Личные данные</a>
             </div>
             <div class="items-4">
                 <img class="img-size" th:src="@{/images/logout.png}"/>
@@ -134,114 +134,8 @@
             </div>
         </div>
     </div>
-    <div class="edit-account">
-        <div class="title-edit-account">
-            Личные данные
-        </div>
-        <form th:if="${!active}" th:action="@{/auth/registration}" method="post" th:object="${profile}">
-            <div class="mt-10">
-                <label class="text-sm">Имя</label>
-                <div class="relative">
-                    <input type="text" name="name" class="authorization-input" th:field="${profile.name}"
-                           autocomplete="name" value="" required>
-                    <button class="edit-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                             stroke="currentColor" aria-hidden="true" class="svg-class">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="mt-10">
-                <label class="text-sm">Номер телефона</label>
-                <div class="relative">
-                    <input type="text" name="name" class="authorization-input" th:field="${profile.phone}"
-                           autocomplete="name" value="" required>
-                    <button class="edit-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                             stroke="currentColor" aria-hidden="true" class="svg-class">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="mt-10">
-                <label class="text-sm">Эл. почта</label>
-                <div class="relative">
-                    <input type="text" name="name" class="authorization-input" th:field="${profile.email}"
-                           autocomplete="name" value="" required>
-                    <button class="edit-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                             stroke="currentColor" aria-hidden="true" class="svg-class">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <!--<div class="mt-10"><label class="text-sm">День рождения</label>
-                <div class="birthday-class">
-                    <input type="text" pattern="\d*" maxlength="2" name="birthDay" class="birthday-class-2">
-                    <input type="text" pattern="\d*" maxlength="2" name="birthMonth" class="birthday-class-2">
-                    <input type="text" pattern="\d*" maxlength="4" name="birthYear" class="birthday-class-2">
-                </div>
-            </div>-->
-            <div class="mt-10">
-                <button class="button-save">Сохранить</button>
-            </div>
-        </form>
-        <form th:if="${active}" th:action="@{/profile/edit}" method="post" th:object="${profile}">
-            <div class="mt-10">
-                <label class="text-sm">Имя</label>
-                <div class="relative">
-                    <input type="text" name="name" class="authorization-input" th:field="${profile.name}"
-                           autocomplete="name" value="" required>
-                    <button class="edit-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                             stroke="currentColor" aria-hidden="true" class="svg-class">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="mt-10">
-                <label class="text-sm">Номер телефона</label>
-                <div class="relative">
-                    <input type="text" name="name" class="authorization-input" th:field="${profile.phone}"
-                           autocomplete="name" value="" required>
-                    <button class="edit-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                             stroke="currentColor" aria-hidden="true" class="svg-class">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="mt-10">
-                <label class="text-sm">Эл. почта</label>
-                <div class="relative">
-                    <input type="text" name="name" class="authorization-input" th:field="${profile.email}"
-                           autocomplete="name" value="" required>
-                    <button class="edit-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                             stroke="currentColor" aria-hidden="true" class="svg-class">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <!--<div class="mt-10"><label class="text-sm">День рождения</label>
-                <div class="birthday-class">
-                    <input type="text" pattern="\d*" maxlength="2" name="birthDay" class="birthday-class-2">
-                    <input type="text" pattern="\d*" maxlength="2" name="birthMonth" class="birthday-class-2">
-                    <input type="text" pattern="\d*" maxlength="4" name="birthYear" class="birthday-class-2">
-                </div>
-            </div>-->
-            <div class="mt-10">
-                <button class="button-save">Сохранить</button>
-            </div>
-        </form>
-    </div>
 </main>
+
 
 
 <script

@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.config.CustomUserDetails;
+import com.example.dto.OrdersDTO;
 import com.example.dto.ProfileDTO;
 import com.example.service.ProfileService;
 import com.example.util.SpringSecurityUtil;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -54,6 +56,16 @@ public class ProfileController {
         return "account";
     }
 
+    @PostMapping("/account")
+    public String accountPost(RedirectAttributes redirectAttrs) {
+        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO = profileService.toDto(customUserDetails.getProfile());
+        redirectAttrs.addFlashAttribute("profile", profileDTO);
+        redirectAttrs.addFlashAttribute("active", true);
+        return "redirect:/profile/account";
+    }
+
     @PostMapping("/edit")
     public String update(@ModelAttribute ProfileDTO dto, Model model) {
         profileService.update(dto);
@@ -62,4 +74,15 @@ public class ProfileController {
         return "account";
     }
 
+    @GetMapping("/orders")
+    public String orders(Model model){
+        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO = profileService.toDto(customUserDetails.getProfile());
+        List<OrdersDTO> orderDTOList = profileService.orders(profileDTO.getId());
+        model.addAttribute("profile", profileDTO);
+        model.addAttribute("active", true);
+        model.addAttribute("orderList", orderDTOList);
+        return "orders";
+    }
 }
